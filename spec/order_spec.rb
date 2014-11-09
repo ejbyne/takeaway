@@ -2,10 +2,11 @@ require 'order'
  
 describe Order do
 
-  let (:order) { Order.new(20) }
+  let (:order) { Order.new(20, customer) }
   let (:line_item) { double :line_item, line_total: 7  }
   let (:line_item2) { double :line_item, line_total: 6 }
   let (:takeaway) { double :takeaway }
+  let (:customer) { double :customer }
   
   it "should allow a line item to be added" do
     order.add(line_item)
