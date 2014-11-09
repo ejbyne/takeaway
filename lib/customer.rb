@@ -9,10 +9,12 @@ class Customer
 
   def select_item(order, line_item)
     order.add(line_item)
+    return order.total
   end
 
-  def finish(order)
-    order.complete
+  def submit(order, takeaway)
+    takeaway.receive(order)
+    return order.total
   end
 
 end
