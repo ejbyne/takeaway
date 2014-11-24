@@ -1,6 +1,12 @@
 class Takeaway
 
   require 'twilio-ruby'
+
+  TWILIO_ACCOUNT_SID = ENV['TWILIO_ACCOUNT_SID']
+  TWILIO_AUTH_TOKEN = ENV['TWILIO_AUTH_TOKEN']
+  TWILIO_NUMBER = ENV['TWILIO_NUMBER']
+  MY_NUMBER = ENV['MY_NUMBER']
+
   attr_reader :orders
 
   def initialize
@@ -10,17 +16,15 @@ class Takeaway
   def receive(order, payment_amount)
     raise "Incorrect payment amount" if order.total != payment_amount
     @orders << order
-    # self.send_message(order.customer_telephone_number)
-    self.send_message('+447896984333')
+    self.send_message(MY_NUMBER) # using my mobile number for test purposes
+    # self.send_message(order.customer_telephone_number) # using argument for production version
   end
 
   def send_message(customer_telephone_number)
     delivery_time = Time.now + 3600
-    account_sid = 'AC4608cc0e9ba93088142097ca0b395c12'
-    auth_token = '54f2acc0ee7e5a93fd37507d134a53fd'
-    @client = Twilio::REST::Client.new account_sid, auth_token
+    @client = Twilio::REST::Client.new TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN
     @client.messages.create(
-        :from => '+441163262148',
+        :from => TWILIO_NUMBER,
         :to => customer_telephone_number,
         :body => "Thank you! Your order was placed and will be delivered before #{delivery_time.hour}:#{delivery_time.min}"
       )
