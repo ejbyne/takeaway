@@ -10,11 +10,13 @@ class Takeaway
 
   attr_reader :orders
 
-  def initialize
+  def initialize(menu)
+    @menu = menu
     @orders = []
   end
 
   def receive(order, payment_amount)
+    raise "One or more items is unavailable" if @menu.dishes.map(&:name) & order.line_items.map(&:dish_name) != order.line_items.map(&:dish_name)
     raise "Incorrect payment amount" if order.total != payment_amount
     @orders << order
     self.send_message(MY_NUMBER)

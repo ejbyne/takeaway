@@ -2,8 +2,9 @@ require 'line_item'
 
 describe LineItem do 
 
-  let (:line_item) { LineItem.new(dish, 2) }
   let (:dish) { double :dish, name: :chicken_jalfrezi, price: 7 }
+  let (:menu) { double :menu, dishes: [dish] }
+  let (:line_item) { LineItem.new(dish, 2) }
 
   it "should be initialized with a specific dish" do 
     expect(line_item.dish_name).to be(:chicken_jalfrezi)
