@@ -1,10 +1,10 @@
 class Customer
 
-  attr_reader :name, :number
+  attr_reader :name, :telephone_number
 
-  def initialize(name, number)
+  def initialize(name, telephone_number)
     @name = name
-    @number = number
+    @telephone_number = telephone_number
   end
 
   def select_item(order, line_item)

@@ -6,7 +6,7 @@ describe Order do
   let (:line_item) { double :line_item, line_total: 7  }
   let (:line_item2) { double :line_item, line_total: 6 }
   let (:takeaway) { double :takeaway }
-  let (:customer) { double :customer }
+  let (:customer) { double :customer, telephone_number: '+441234567890' }
   
   it "should allow a line item to be added" do
     order.add(line_item)
