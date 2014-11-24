@@ -16,4 +16,8 @@ class Order
     @total += line_item.line_total
   end
 
+  def remove(line_item)
+    @line_items.delete(line_item)
+  end
+
 end

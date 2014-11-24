@@ -28,7 +28,7 @@ describe Takeaway do
   end
 
   it "should be able to send a confirmation text message" do
-    allow(messages).to receive(:create)
+    expect(messages).to receive(:create)
     takeaway.send_message('+441234567890', client)
   end
 

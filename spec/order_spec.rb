@@ -13,6 +13,13 @@ describe Order do
     expect(order.line_items).to eq([line_item])
   end
 
+  it "should allow line items to be removed" do
+    order.add(line_item)
+    order.add(line_item2)
+    order.remove(line_item)
+    expect(order.line_items).to eq([line_item2])
+  end
+
   it "should keep a running total" do
     order.add(line_item)
     order.add(line_item2)

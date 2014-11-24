@@ -16,13 +16,21 @@ class Takeaway
   end
 
   def receive(order, payment_amount)
-    raise "One or more items is unavailable" if @menu.dishes.map(&:name) & order.line_items.map(&:dish_name) != order.line_items.map(&:dish_name)
-    raise "Incorrect payment amount" if order.total != payment_amount
+    raise "One or more items is unavailable" unless items_available?(order)
+    raise "Incorrect payment amount" unless payment_correct?(order, payment_amount)
     @orders << order
     self.send_message(MY_NUMBER)
     # using my mobile number for test purposes
     # self.send_message(order.customer_telephone_number)
     # would use customer telephone number for production version
+  end
+
+  def items_available?(order)
+    @menu.dishes.map(&:name) & order.line_items.map(&:dish_name) == order.line_items.map(&:dish_name)
+  end
+
+  def payment_correct?(order, payment_amount)
+    order.total == payment_amount
   end
 
   def send_message(customer_telephone_number, client = CLIENT)
