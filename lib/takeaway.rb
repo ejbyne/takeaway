@@ -16,8 +16,10 @@ class Takeaway
   def receive(order, payment_amount)
     raise "Incorrect payment amount" if order.total != payment_amount
     @orders << order
-    self.send_message(MY_NUMBER) # using my mobile number for test purposes
-    # self.send_message(order.customer_telephone_number) # using argument for production version
+    self.send_message(MY_NUMBER)
+    # using my mobile number for test purposes
+    # self.send_message(order.customer_telephone_number)
+    # using customer telephone number for production version
   end
 
   def send_message(customer_telephone_number)
