@@ -6,7 +6,8 @@ class Takeaway
     @orders = []
   end
 
-  def receive(order)
+  def receive(order, payment_amount)
+    raise "Incorrect payment amount" if order.total != payment_amount
     @orders << order
   end
 

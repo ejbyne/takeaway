@@ -24,7 +24,7 @@ describe Customer do
   it "must be able to finish an order" do
     expect(takeaway).to receive(:receive)
     allow(order).to receive(:total)
-    customer.submit(order, takeaway)
+    customer.submit(takeaway, order, 7)
   end
 
 end

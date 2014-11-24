@@ -12,8 +12,8 @@ class Customer
     return order.total
   end
 
-  def submit(order, takeaway)
-    takeaway.receive(order)
+  def submit(takeaway, order, payment_amount)
+    takeaway.receive(order, payment_amount)
     return order.total
   end
 
