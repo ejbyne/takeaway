@@ -1,3 +1,4 @@
+require 'spec_helper'
 require 'line_item'
 
 describe LineItem do 
